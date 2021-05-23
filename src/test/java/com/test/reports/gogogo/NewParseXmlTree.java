@@ -44,20 +44,12 @@ public class NewParseXmlTree {
         final List<Element> listElement = root.elements();// 所有一级子节点的list
         // 解析xml
         ExtentReports extent = new ExtentReports();
+
         extent.setReportUsesManualConfiguration(true);
-        ExtentSparkReporter spark = new ExtentSparkReporter("/Users/anjie/dev/Intellij Idea/extent-reports-demo/20210516-test.jtl.html")
-                .viewConfigurer()
-                .viewOrder()
-                .as(new ViewName[] {
-                        ViewName.DASHBOARD,
-                        ViewName.TEST,
-                        ViewName.AUTHOR,
-                        ViewName.DEVICE,
-                        ViewName.EXCEPTION,
-                        ViewName.LOG,
-                        ViewName.CATEGORY
-                })
-                .apply();
+
+
+        ExtentSparkReporter spark = new ExtentSparkReporter("/Users/anjie/dev/Intellij Idea/extent-reports-demo/20210516-test.jtl.html");
+        spark.loadJSONConfig(new File("/Users/anjie/dev/Intellij Idea/extent-reports-demo/spark-config.json"));
         extent.attachReporter(spark);
         /**
          *         ExtentTest test1 = extent.createTest("MyTest1");
